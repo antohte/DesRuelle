@@ -4,7 +4,6 @@ import { useStats } from '../composables/useStats.js'
 
 const { total, avg } = useStats()
 
-const showDropdown = ref(false)
 const menuOpen = ref(false)
 const activeService = ref(null)
 
@@ -67,24 +66,11 @@ const reviews = [
         <img src="/images/logo.png" alt="Conciergerie Desruelle" />
       </a>
       <nav class="header-nav">
-        <div
-          class="nav-item dropdown"
-          @mouseenter="showDropdown = true"
-          @mouseleave="showDropdown = false"
-        >
-          Prestations
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          <ul v-if="showDropdown" class="dropdown-menu">
-            <li><a href="#">Maintenance</a></li>
-            <li><a href="#">Rénovation</a></li>
-            <li><a href="#">Entretien</a></li>
-            <li><a href="#">Espaces verts</a></li>
-          </ul>
-        </div>
-        <a href="/avis" class="nav-item">Avis</a>
-        <a href="/apropos" class="nav-item">À propos</a>
-        <a href="/contact" class="nav-item">Contact</a>
-        <a href="/connexion" class="btn-cta">Connexion</a>
+        <a href="/prestations" class="nav-item">Prestations</a>
+        <a href="/avis"        class="nav-item">Avis</a>
+        <a href="/apropos"     class="nav-item">À propos</a>
+        <a href="/contact"     class="nav-item">Contact</a>
+        <a href="/connexion"   class="btn-cta">Connexion</a>
       </nav>
       <button class="burger" @click="menuOpen = !menuOpen">
         <span :class="{ open: menuOpen }"></span>
@@ -93,17 +79,13 @@ const reviews = [
       </button>
     </header>
 
-    <!-- Mobile menu -->
     <transition name="slide">
       <div v-if="menuOpen" class="mobile-menu">
-        <a href="#" @click="menuOpen=false">Maintenance</a>
-        <a href="#" @click="menuOpen=false">Rénovation</a>
-        <a href="#" @click="menuOpen=false">Entretien</a>
-        <a href="#" @click="menuOpen=false">Espaces verts</a>
-        <a href="/avis" @click="menuOpen=false">Avis clients</a>
-        <a href="/apropos" @click="menuOpen=false">À propos</a>
-        <a href="/contact" @click="menuOpen=false">Contact</a>
-        <a href="/connexion" class="btn-cta-mobile" @click="menuOpen=false">Connexion</a>
+        <a href="/prestations" @click="menuOpen=false">Prestations</a>
+        <a href="/avis"        @click="menuOpen=false">Avis clients</a>
+        <a href="/apropos"     @click="menuOpen=false">À propos</a>
+        <a href="/contact"     @click="menuOpen=false">Contact</a>
+        <a href="/connexion"   class="btn-cta-mobile" @click="menuOpen=false">Connexion</a>
       </div>
     </transition>
 
@@ -113,29 +95,20 @@ const reviews = [
       <div class="hero-inner">
         <div class="hero-badge">
           <span class="stars">★★★★★</span>
-          <span>{{ total }} avis</span>
+          <span>{{ total }} avis · Plus que pro</span>
         </div>
         <h1>Votre conciergerie<br><em>de confiance</em> à Lille</h1>
         <p>Disponibles 7j/7 et 24h/24 pour simplifier votre quotidien, gérer votre bien, rénover et entretenir vos espaces.</p>
         <div class="hero-actions">
           <a href="/connexion" class="btn-hero-primary">Connexion</a>
-          <a href="#services" class="btn-hero-secondary">Voir nos services</a>
+          <a href="#services"  class="btn-hero-secondary">Voir nos services</a>
         </div>
         <div class="hero-stats">
-          <div class="stat">
-            <strong>Depuis 2020</strong>
-            <span>Entreprise familiale</span>
-          </div>
+          <div class="stat"><strong>Depuis 2020</strong><span>Entreprise familiale</span></div>
           <div class="stat-sep"></div>
-          <div class="stat">
-            <strong>7j/7 · 24h/24</strong>
-            <span>Disponibilité totale</span>
-          </div>
+          <div class="stat"><strong>7j/7 · 24h/24</strong><span>Disponibilité totale</span></div>
           <div class="stat-sep"></div>
-          <div class="stat">
-            <strong>Métropole Lilloise</strong>
-            <span>Zone d'intervention</span>
-          </div>
+          <div class="stat"><strong>Métropole Lilloise</strong><span>Zone d'intervention</span></div>
         </div>
       </div>
       <div class="hero-img-wrap">
@@ -219,7 +192,7 @@ const reviews = [
         <div class="rating-global">
           <span class="stars big-stars">★★★★★</span>
           <strong>{{ avg }} / 5</strong>
-          <span>sur {{ total }} avis </span>
+          <span>sur {{ total }} avis · certifiés blockchain Plus que pro</span>
         </div>
       </div>
       <div class="reviews-grid">
@@ -387,9 +360,9 @@ em { font-style: normal; color: #6D1F3E; }
   color: #fff;
 }
 .hero h1 em { color: #f5c0cf; }
-.hero > .hero-inner > p { font-size: 16px; opacity: .85; max-width: 420px; }
+.hero > .hero-inner > p { font-size: 16px; opacity: .85; max-width: 420px; margin: 0 auto; text-align: center;}
 
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;}
 .btn-hero-primary {
   padding: 13px 28px; background: #fff; color: #6D1F3E;
   border-radius: 7px; font-weight: 700; font-size: 14px;

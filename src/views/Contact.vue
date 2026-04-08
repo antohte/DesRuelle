@@ -132,29 +132,16 @@ function resetForm() {
         <img src="/images/logo.png" alt="Conciergerie Desruelle" />
       </a>
       <nav class="header-nav">
-        <div
-          class="nav-item dropdown"
-          @mouseenter="showDropdown = true"
-          @mouseleave="showDropdown = false"
-        >
-          Prestations
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-          <ul v-if="showDropdown" class="dropdown-menu">
-            <li><a href="#">Maintenance</a></li>
-            <li><a href="#">Rénovation</a></li>
-            <li><a href="#">Entretien</a></li>
-            <li><a href="#">Espaces verts</a></li>
-          </ul>
-        </div>
-        <a href="/avis"   class="nav-item">Avis</a>
-        <a href="/apropos"  class="nav-item">À propos</a>
-        <a href="/contact" class="nav-item active">Contact</a>
-        <a href="/connexion" class="btn-cta">Connexion</a>
+        <a href="/prestations" class="nav-item">Prestations</a>
+        <a href="/avis"        class="nav-item">Avis</a>
+        <a href="/apropos"     class="nav-item">À propos</a>
+        <a href="/contact"     class="nav-item">Contact</a>
+        <a href="/connexion"   class="btn-cta">Connexion</a>
       </nav>
       <button class="burger" @click="menuOpen = !menuOpen">
-        <span></span><span></span><span></span>
+        <span :class="{ open: menuOpen }"></span>
+        <span :class="{ open: menuOpen }"></span>
+        <span :class="{ open: menuOpen }"></span>
       </button>
     </header>
 
