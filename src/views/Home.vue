@@ -72,7 +72,7 @@ const reviews = [
         <a href="/avis"        class="nav-item">Avis</a>
         <a href="/apropos"     class="nav-item">À propos</a>
         <a href="/contact"     class="nav-item">Contact</a>
-        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta">Dashboard</RouterLink>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta">Mon espace</RouterLink>
         <RouterLink v-else to="/connexion" class="btn-cta">Connexion</RouterLink>
       </nav>
       <button class="burger" @click="menuOpen = !menuOpen">
@@ -88,7 +88,7 @@ const reviews = [
         <a href="/avis"        @click="menuOpen=false">Avis clients</a>
         <a href="/apropos"     @click="menuOpen=false">À propos</a>
         <a href="/contact"     @click="menuOpen=false">Contact</a>
-        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta-mobile" @click="menuOpen=false">Dashboard</RouterLink>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta-mobile" @click="menuOpen=false">Mon espace</RouterLink>
         <RouterLink v-else to="/connexion" class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
       </div>
     </transition>
