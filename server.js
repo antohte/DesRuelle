@@ -9,15 +9,15 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Routes
-import authRoutes         from './api/routes/auth.js'
-import devisRoutes        from './api/routes/devis.js'
+import authRoutes from './api/routes/auth.js'
+import devisRoutes from './api/routes/devis.js'
 import interventionsRoutes from './api/routes/interventions.js'
-import techniciensRoutes  from './api/routes/techniciens.js'
-import demandesRoutes     from './api/routes/demandes.js'
-import stripeRoutes       from './api/routes/stripe.js'
+import techniciensRoutes from './api/routes/techniciens.js'
+import demandesRoutes from './api/routes/demandes.js'
+import stripeRoutes from './api/routes/stripe.js'
 import notificationsRoutes from './api/routes/notifications.js'
-import feedbacksRoutes    from './api/routes/feedbacks.js'
-import adminRoutes        from './api/routes/admin.js'
+import feedbacksRoutes from './api/routes/feedbacks.js'
+import adminRoutes from './api/routes/admin.js'
 
 const app = express()
 
@@ -83,20 +83,20 @@ app.post('/api/avis', async (req, res) => {
 
 // ── Nouvelles routes ───────────────────────────────────────────────
 
-app.use('/api/auth',          authRoutes)
-app.use('/api/devis',         devisRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/devis', devisRoutes)
 app.use('/api/interventions', interventionsRoutes)
-app.use('/api/techniciens',   techniciensRoutes)
-app.use('/api/demandes',      demandesRoutes)
-app.use('/api/stripe',        stripeRoutes)
+app.use('/api/techniciens', techniciensRoutes)
+app.use('/api/demandes', demandesRoutes)
+app.use('/api/stripe', stripeRoutes)
 app.use('/api/notifications', notificationsRoutes)
-app.use('/api/feedbacks',     feedbacksRoutes)
-app.use('/api/admin',         adminRoutes)
+app.use('/api/feedbacks', feedbacksRoutes)
+app.use('/api/admin', adminRoutes)
 
 // ── Servir le Frontend en production ───────────────────────────────
 app.use(express.static(path.join(__dirname, 'dist')))
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
