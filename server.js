@@ -1,7 +1,12 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import db from './api/db.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Routes
 import authRoutes         from './api/routes/auth.js'
@@ -87,6 +92,13 @@ app.use('/api/stripe',        stripeRoutes)
 app.use('/api/notifications', notificationsRoutes)
 app.use('/api/feedbacks',     feedbacksRoutes)
 app.use('/api/admin',         adminRoutes)
+
+// ── Servir le Frontend en production ───────────────────────────────
+app.use(express.static(path.join(__dirname, 'dist')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`))
