@@ -39,26 +39,26 @@ const stats = [
 
     <!-- HEADER -->
     <header class="header">
-      <a href="/" class="header-logo">
+      <RouterLink to="/" class="header-logo">
         <img src="/images/logo.png" alt="Conciergerie Desruelle" />
-      </a>
+      </RouterLink>
       <nav class="header-nav">
-        <a href="/prestations" class="nav-item">Prestations</a>
-        <a href="/avis"        class="nav-item">Avis</a>
-        <a href="/apropos"     class="nav-item active">À propos</a>
-        <a href="/contact"     class="nav-item">Contact</a>
-        <a href="/connexion"   class="btn-cta">Connexion</a>
+        <RouterLink to="/prestations" class="nav-item">Prestations</RouterLink>
+        <RouterLink to="/avis"        class="nav-item">Avis</RouterLink>
+        <RouterLink to="/apropos"     class="nav-item active">À propos</RouterLink>
+        <RouterLink to="/contact"     class="nav-item">Contact</RouterLink>
+        <RouterLink to="/connexion"   class="btn-cta">Connexion</RouterLink>
       </nav>
       <button class="burger" @click="menuOpen=!menuOpen"><span></span><span></span><span></span></button>
     </header>
 
     <transition name="slide">
       <div v-if="menuOpen" class="mobile-menu">
-        <a href="/prestations" @click="menuOpen=false">Prestations</a>
-        <a href="/avis"        @click="menuOpen=false">Avis clients</a>
-        <a href="/apropos"     @click="menuOpen=false">À propos</a>
-        <a href="/contact"     @click="menuOpen=false">Contact</a>
-        <a href="/connexion"   class="btn-cta-mobile" @click="menuOpen=false">Connexion</a>
+        <RouterLink to="/prestations" @click="menuOpen=false">Prestations</RouterLink>
+        <RouterLink to="/avis"        @click="menuOpen=false">Avis clients</RouterLink>
+        <RouterLink to="/apropos"     @click="menuOpen=false">À propos</RouterLink>
+        <RouterLink to="/contact"     @click="menuOpen=false">Contact</RouterLink>
+        <RouterLink to="/connexion"   class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
       </div>
     </transition>
 
@@ -147,8 +147,8 @@ const stats = [
           <p>Lisez les avis authentiques des clients qui ont déjà fait appel à notre conciergerie.</p>
         </div>
         <div class="cta-inline-actions">
-          <a href="/avis"    class="btn-primary">Voir les avis clients</a>
-          <a href="/contact" class="btn-secondary">Nous contacter</a>
+          <RouterLink to="/avis"    class="btn-primary">Voir les avis clients</RouterLink>
+          <RouterLink to="/contact" class="btn-secondary">Nous contacter</RouterLink>
         </div>
       </div>
     </section>
@@ -163,12 +163,12 @@ const stats = [
         </div>
         <div class="footer-links">
           <h4>Prestations</h4>
-          <a href="/prestations">Maintenance</a>
-          <a href="/prestations">Rénovation</a>
-          <a href="/prestations">Entretien</a>
-          <a href="/prestations">Espaces verts</a>
-          <a href="/avis">Avis clients</a>
-          <a href="/contact">Contact</a>
+          <RouterLink to="/prestations">Maintenance</RouterLink>
+          <RouterLink to="/prestations">Rénovation</RouterLink>
+          <RouterLink to="/prestations">Entretien</RouterLink>
+          <RouterLink to="/prestations">Espaces verts</RouterLink>
+          <RouterLink to="/avis">Avis clients</RouterLink>
+          <RouterLink to="/contact">Contact</RouterLink>
         </div>
         <div class="footer-links">
           <h4>Légal</h4>

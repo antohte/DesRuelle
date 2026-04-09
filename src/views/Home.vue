@@ -64,14 +64,14 @@ const reviews = [
 
     <!-- ── HEADER ── -->
     <header class="header">
-      <a href="/" class="header-logo">
+      <RouterLink to="/" class="header-logo">
         <img src="/images/logo.png" alt="Conciergerie Desruelle" />
-      </a>
+      </RouterLink>
       <nav class="header-nav">
-        <a href="/prestations" class="nav-item">Prestations</a>
-        <a href="/avis"        class="nav-item">Avis</a>
-        <a href="/apropos"     class="nav-item">À propos</a>
-        <a href="/contact"     class="nav-item">Contact</a>
+        <RouterLink to="/prestations" class="nav-item">Prestations</RouterLink>
+        <RouterLink to="/avis"        class="nav-item">Avis</RouterLink>
+        <RouterLink to="/apropos"     class="nav-item">À propos</RouterLink>
+        <RouterLink to="/contact"     class="nav-item">Contact</RouterLink>
         <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta">Mon espace</RouterLink>
         <RouterLink v-else to="/connexion" class="btn-cta">Connexion</RouterLink>
       </nav>
@@ -84,10 +84,10 @@ const reviews = [
 
     <transition name="slide">
       <div v-if="menuOpen" class="mobile-menu">
-        <a href="/prestations" @click="menuOpen=false">Prestations</a>
-        <a href="/avis"        @click="menuOpen=false">Avis clients</a>
-        <a href="/apropos"     @click="menuOpen=false">À propos</a>
-        <a href="/contact"     @click="menuOpen=false">Contact</a>
+        <RouterLink to="/prestations" @click="menuOpen=false">Prestations</RouterLink>
+        <RouterLink to="/avis"        @click="menuOpen=false">Avis clients</RouterLink>
+        <RouterLink to="/apropos"     @click="menuOpen=false">À propos</RouterLink>
+        <RouterLink to="/contact"     @click="menuOpen=false">Contact</RouterLink>
         <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta-mobile" @click="menuOpen=false">Mon espace</RouterLink>
         <RouterLink v-else to="/connexion" class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
       </div>
@@ -144,7 +144,7 @@ const reviews = [
         </div>
       </div>
       <div class="section-cta">
-        <a href="/connexion" class="btn-primary">Connexion</a>
+        <RouterLink to="/connexion" class="btn-primary">Connexion</RouterLink>
       </div>
     </section>
 
@@ -185,7 +185,7 @@ const reviews = [
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6D1F3E" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span><strong>Lille (59160)</strong> — Loos, Ronchin, La Madeleine et toute la métropole lilloise</span>
         </div>
-        <a href="/contact" class="btn-primary">Nous contacter</a>
+        <RouterLink to="/contact" class="btn-primary">Nous contacter</RouterLink>
       </div>
     </section>
 
@@ -215,7 +215,7 @@ const reviews = [
         </div>
       </div>
       <div class="section-cta">
-        <a href="/avis" class="btn-secondary">Voir tous les avis</a>
+        <RouterLink to="/avis" class="btn-secondary">Voir tous les avis</RouterLink>
       </div>
     </section>
 
@@ -226,7 +226,7 @@ const reviews = [
           <h2>Prêt à nous confier votre projet ?</h2>
           <p>Devis gratuit, réponse rapide, intervention dans toute la métropole lilloise.</p>
         </div>
-        <a href="/connexion" class="btn-hero-primary">Connexion</a>
+        <RouterLink to="/connexion" class="btn-hero-primary">Connexion</RouterLink>
       </div>
     </section>
 
@@ -244,8 +244,8 @@ const reviews = [
           <a href="#">Rénovation</a>
           <a href="#">Entretien</a>
           <a href="#">Espaces verts</a>
-          <a href="/avis">Avis clients</a>
-          <a href="/contact">Contact</a>
+          <RouterLink to="/avis">Avis clients</RouterLink>
+          <RouterLink to="/contact">Contact</RouterLink>
         </div>
         <div class="footer-links">
           <h4>Légal</h4>
