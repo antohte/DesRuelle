@@ -1,4 +1,6 @@
 <script setup>
+import { useAuth } from '../composables/useAuth.js'
+const { isAuthenticated, dashboardRoute } = useAuth()
 import { ref } from 'vue'
 import { useStats } from '../composables/Usestats.js'
 
@@ -47,7 +49,8 @@ const stats = [
         <RouterLink to="/avis"        class="nav-item">Avis</RouterLink>
         <RouterLink to="/apropos"     class="nav-item active">À propos</RouterLink>
         <RouterLink to="/contact"     class="nav-item">Contact</RouterLink>
-        <RouterLink to="/connexion"   class="btn-cta">Connexion</RouterLink>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta">Mon espace</RouterLink>
+        <RouterLink v-else to="/connexion" class="btn-cta">Connexion</RouterLink>
       </nav>
       <button class="burger" @click="menuOpen=!menuOpen"><span></span><span></span><span></span></button>
     </header>
@@ -58,7 +61,8 @@ const stats = [
         <RouterLink to="/avis"        @click="menuOpen=false">Avis clients</RouterLink>
         <RouterLink to="/apropos"     @click="menuOpen=false">À propos</RouterLink>
         <RouterLink to="/contact"     @click="menuOpen=false">Contact</RouterLink>
-        <RouterLink to="/connexion"   class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta-mobile" @click="menuOpen=false">Mon espace</RouterLink>
+        <RouterLink v-else to="/connexion" class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
       </div>
     </transition>
 
