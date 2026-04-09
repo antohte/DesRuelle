@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useStats } from '../composables/useStats.js'
+import { useAuth } from '../composables/useAuth.js'
 
 const { total, avg } = useStats()
+const { isAuthenticated, dashboardRoute } = useAuth()
 
 const menuOpen = ref(false)
 const activeService = ref(null)
@@ -70,7 +72,8 @@ const reviews = [
         <a href="/avis"        class="nav-item">Avis</a>
         <a href="/apropos"     class="nav-item">À propos</a>
         <a href="/contact"     class="nav-item">Contact</a>
-        <a href="/connexion"   class="btn-cta">Connexion</a>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta">Dashboard</RouterLink>
+        <RouterLink v-else to="/connexion" class="btn-cta">Connexion</RouterLink>
       </nav>
       <button class="burger" @click="menuOpen = !menuOpen">
         <span :class="{ open: menuOpen }"></span>
@@ -85,7 +88,8 @@ const reviews = [
         <a href="/avis"        @click="menuOpen=false">Avis clients</a>
         <a href="/apropos"     @click="menuOpen=false">À propos</a>
         <a href="/contact"     @click="menuOpen=false">Contact</a>
-        <a href="/connexion"   class="btn-cta-mobile" @click="menuOpen=false">Connexion</a>
+        <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-cta-mobile" @click="menuOpen=false">Dashboard</RouterLink>
+        <RouterLink v-else to="/connexion" class="btn-cta-mobile" @click="menuOpen=false">Connexion</RouterLink>
       </div>
     </transition>
 
@@ -100,7 +104,8 @@ const reviews = [
         <h1>Votre conciergerie<br><em>de confiance</em> à Lille</h1>
         <p>Disponibles 7j/7 et 24h/24 pour simplifier votre quotidien, gérer votre bien, rénover et entretenir vos espaces.</p>
         <div class="hero-actions">
-          <a href="/connexion" class="btn-hero-primary">Connexion</a>
+          <RouterLink v-if="isAuthenticated" :to="dashboardRoute()" class="btn-hero-primary">Mon espace</RouterLink>
+          <RouterLink v-else to="/connexion" class="btn-hero-primary">Connexion</RouterLink>
           <a href="#services"  class="btn-hero-secondary">Voir nos services</a>
         </div>
         <div class="hero-stats">
