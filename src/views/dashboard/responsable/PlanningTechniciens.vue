@@ -119,7 +119,7 @@ import AppCalendar from '../../../components/shared/AppCalendar.vue'
 import { useAuth } from '../../../composables/useAuth.js'
 import { useInterventions } from '../../../composables/useInterventions.js'
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 const { authHeader } = useAuth()
 const { interventionsList, fetchInterventions } = useInterventions()
 

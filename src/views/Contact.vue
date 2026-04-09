@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { useStats } from '../composables/useStats.js'
+import { useStats } from '../composables/Usestats.js'
 
 const { total, avg } = useStats()
 

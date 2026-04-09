@@ -32,7 +32,7 @@ import DashboardLayout from '../../../components/layout/DashboardLayout.vue'
 import StarRating from '../../../components/shared/StarRating.vue'
 import { useAuth } from '../../../composables/useAuth.js'
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 const { authHeader } = useAuth()
 
 const avis = ref([])

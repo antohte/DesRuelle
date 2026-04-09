@@ -36,7 +36,7 @@ import { ref, computed, onMounted } from 'vue'
 import DashboardLayout from '../../../components/layout/DashboardLayout.vue'
 import { useAuth } from '../../../composables/useAuth.js'
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 const { authHeader } = useAuth()
 
 const contacts = ref([])

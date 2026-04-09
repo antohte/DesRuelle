@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { useAuth } from './useAuth.js'
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 
 export function useDevis() {
   const { authHeader } = useAuth()

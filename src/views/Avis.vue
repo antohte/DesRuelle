@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, reactive, onMounted } from 'vue'
-import { useStats } from '../composables/useStats.js'
+import { useStats } from '../composables/Usestats.js'
 
-const API_URL = 'http://localhost:3001/api/avis'
+const API_URL = '/api/avis'
 const { total, avg } = useStats()
 
 const showDropdown = ref(false)

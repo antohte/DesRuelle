@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useStats } from '../composables/useStats.js'
+import { useStats } from '../composables/Usestats.js'
 import { useAuth } from '../composables/useAuth.js'
 
 const { total, avg } = useStats()

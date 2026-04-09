@@ -70,7 +70,7 @@ const { getDevis } = useDevis()
 const { createIntervention } = useInterventions()
 const { authHeader } = useAuth()
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 
 const devis        = ref(null)
 const loadingDevis = ref(true)

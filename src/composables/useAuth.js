@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 
-const API = 'http://localhost:3001/api'
+const API = '/api'
 
 // État partagé (singleton module-level)
 const currentUser = ref(null)
@@ -57,14 +57,14 @@ function logout() {
 }
 
 const isAuthenticated = computed(() => !!currentUser.value)
-const isClient        = computed(() => currentUser.value?.role === 'client')
-const isTechnicien    = computed(() => currentUser.value?.role === 'technicien')
-const isResponsable   = computed(() => currentUser.value?.role === 'responsable')
+const isClient = computed(() => currentUser.value?.role === 'client')
+const isTechnicien = computed(() => currentUser.value?.role === 'technicien')
+const isResponsable = computed(() => currentUser.value?.role === 'responsable')
 
 function dashboardRoute() {
   const role = currentUser.value?.role
   if (role === 'responsable') return '/dashboard/responsable'
-  if (role === 'technicien')  return '/dashboard/technicien'
+  if (role === 'technicien') return '/dashboard/technicien'
   return '/dashboard/client'
 }
 
