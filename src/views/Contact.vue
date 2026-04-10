@@ -368,7 +368,7 @@ function resetForm() {
 <style scoped>
 /* ─────────── BASE ─────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-.site { font-family: 'Segoe UI', system-ui, sans-serif; color: #2d1020; line-height: 1.65; overflow-x: hidden; }
+.site { font-family: var(--sans); color: #2d1020; line-height: 1.65; overflow-x: hidden; }
 a { text-decoration: none; }
 em { font-style: normal; color: #6D1F3E; }
 

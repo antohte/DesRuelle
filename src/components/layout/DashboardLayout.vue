@@ -145,7 +145,7 @@ function handleLogout() {
 .dash-root {
   display: flex; min-height: 100vh;
   background: #fdf8f9;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--sans);
 }
 /* Sidebar */
 .sidebar {
