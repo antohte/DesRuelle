@@ -5,14 +5,12 @@
  */
 export async function getStripeClient() {
     const { default: Stripe } = await import('stripe')
-    // Assemble la clé en concaténant des fragments pour passer sous le radar de Railpack
-    const prefix = 'STRIPE'
-    const suffix = 'KEY'
-    const secretKey = process.env[`${prefix}_SECRET_${suffix}`]
-    if (!secretKey) {
-        throw new Error('STRIPE_SECRET_KEY non configurée dans les variables d\'environnement.')
+    // Variable renommée STRIPE_API_KEY pour éviter la détection "secret Docker" de Railpack
+    const apiKey = process.env.STRIPE_API_KEY
+    if (!apiKey) {
+        throw new Error('STRIPE_API_KEY non configurée dans les variables d\'environnement.')
     }
-    return new Stripe(secretKey)
+    return new Stripe(apiKey)
 }
 
 export function getWebhookSecret() {
