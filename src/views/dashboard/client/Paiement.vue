@@ -140,6 +140,7 @@ async function pay() {
       date_debut: selectedSlot.value.start,
       date_fin: selectedSlot.value.end,
       stripe_payment_intent_id: paymentIntent.id,
+      montant: devis.value.prix,
     })
 
     successMsg.value = 'Paiement enregistré ! Votre intervention est planifiée.'

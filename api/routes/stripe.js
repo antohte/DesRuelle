@@ -46,15 +46,34 @@ router.post('/webhook', async (req, res) => {
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET)
   } catch (err) {
+    console.error('Webhook signature verification failed:', err.message)
     return res.status(400).send(`Webhook Error: ${err.message}`)
   }
 
-  if (event.type === 'payment_intent.payment_failed') {
-    const pi = event.data.object
-    await db.query(
-      "UPDATE interventions SET stripe_statut='en_attente' WHERE stripe_payment_intent_id=?",
-      [pi.id]
-    )
+  // Logique métier selon le type d'événement
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+    case 'payment_intent.amount_capturable_updated': {
+      const pi = event.data.object
+      // On marque l'intervention comme 'capture' (autorisé/payé dans notre workflow manual)
+      await db.query(
+        "UPDATE interventions SET stripe_statut='capture' WHERE stripe_payment_intent_id=?",
+        [pi.id]
+      )
+      console.log(`PaymentIntent ${pi.id} succeeded or updated.`)
+      break
+    }
+    case 'payment_intent.payment_failed': {
+      const pi = event.data.object
+      await db.query(
+        "UPDATE interventions SET stripe_statut='en_attente' WHERE stripe_payment_intent_id=?",
+        [pi.id]
+      )
+      console.log(`PaymentIntent ${pi.id} failed.`)
+      break
+    }
+    default:
+      console.log(`Unhandled event type ${event.type}`)
   }
 
   res.json({ received: true })
