@@ -2,6 +2,7 @@ import { Router } from 'express'
 import db from '../db.js'
 import { authenticateJWT, requireRole } from '../middleware/auth.js'
 import { notify } from '../helpers/notify.js'
+import { getStripeClient } from '../helpers/stripeClient.js'
 
 const router = Router()
 router.use(authenticateJWT)
@@ -176,8 +177,7 @@ router.patch('/:id/statut', requireRole('responsable'), async (req, res) => {
     // Si en_cours → capturer le paiement Stripe
     if (statut === 'en_cours' && check[0].stripe_payment_intent_id) {
       try {
-        const { default: Stripe } = await import('stripe')
-        const stripe = new Stripe(process.env['STRIPE_SECRET_KEY'])
+        const stripe = await getStripeClient()
         await stripe.paymentIntents.capture(check[0].stripe_payment_intent_id)
         await db.query("UPDATE interventions SET stripe_statut='capture' WHERE id=?", [req.params.id])
       } catch (stripeErr) {
