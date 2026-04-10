@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
       const params = [req.user.id]
       if (statut) { q += ' AND i.statut = ?'; params.push(statut) }
       q += ' GROUP BY i.id ORDER BY i.date_debut DESC'
-      ;[rows] = await db.query(q, params)
+        ;[rows] = await db.query(q, params)
 
     } else if (req.user.role === 'technicien') {
       let q = `SELECT i.*, d.type_service, d.nb_techniciens,
@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
       const params = [req.user.id]
       if (statut) { q += ' AND i.statut = ?'; params.push(statut) }
       q += ' ORDER BY i.date_debut DESC'
-      ;[rows] = await db.query(q, params)
+        ;[rows] = await db.query(q, params)
 
     } else if (req.user.role === 'responsable') {
       let q = `SELECT i.*, d.type_service, d.nb_techniciens,
@@ -84,7 +84,7 @@ router.get('/', async (req, res) => {
       const params = []
       if (statut) { q += ' AND i.statut = ?'; params.push(statut) }
       q += ' GROUP BY i.id ORDER BY i.date_debut DESC'
-      ;[rows] = await db.query(q, params)
+        ;[rows] = await db.query(q, params)
     } else {
       return res.status(403).json({ success: false, error: 'Accès refusé' })
     }
@@ -177,7 +177,7 @@ router.patch('/:id/statut', requireRole('responsable'), async (req, res) => {
     if (statut === 'en_cours' && check[0].stripe_payment_intent_id) {
       try {
         const { default: Stripe } = await import('stripe')
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+        const stripe = new Stripe(process.env['STRIPE_SECRET_KEY'])
         await stripe.paymentIntents.capture(check[0].stripe_payment_intent_id)
         await db.query("UPDATE interventions SET stripe_statut='capture' WHERE id=?", [req.params.id])
       } catch (stripeErr) {

@@ -8,7 +8,7 @@ const router = Router()
 // POST /api/stripe/create-payment-intent — Client initie le paiement
 router.post('/create-payment-intent', authenticateJWT, requireRole('client'), async (req, res) => {
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+    const stripe = new Stripe(process.env['STRIPE_SECRET_KEY'])
     const { devis_id } = req.body
 
     const [rows] = await db.query('SELECT * FROM devis WHERE id=? AND client_id=?', [devis_id, req.user.id])
@@ -39,7 +39,7 @@ router.post('/create-payment-intent', authenticateJWT, requireRole('client'), as
 
 // POST /api/stripe/webhook — Stripe webhook
 router.post('/webhook', async (req, res) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+  const stripe = new Stripe(process.env['STRIPE_SECRET_KEY'])
   const sig = req.headers['stripe-signature']
 
   let event
